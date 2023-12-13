@@ -62,39 +62,17 @@ The app should:
 
 ### References
 
-Day.js
-https://day.js.org/en/<br>
+JavaScript Get Current Date - Today's Date in JS
+https://www.freecodecamp.org/news/javascript-get-current-date-todays-date-in-js/<br>
 
-(Day.js) AdvancedFormat
-https://day.js.org/docs/en/plugin/advanced-format<br>
+Intl.DateTimeFormat
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat<br>
 
-Day-Planner
-https://github.com/JenG1/Day-Planner/tree/master<br>
+How to Add Days to Current Date in JavaScript
+https://www.tutorialrepublic.com/faq/how-to-add-days-to-current-date-in-javascript.php<br>
 
-W3C - ARIA14: Using aria-label to provide an invisible label where a visible label cannot be used
-https://www.w3.org/TR/WCAG20-TECHS/ARIA14.html<br>
+Formatting Dates With the DateTimeFormat Object
+https://betterprogramming.pub/formatting-dates-with-the-datetimeformat-object-9c808dc58604<br>
 
-click event
-https://api.jquery.com/click/<br>
-
-How to Set Value of Textarea in jQuery
-https://www.tutorialrepublic.com/faq/how-to-set-value-of-textarea-in-jquery.php<br>
-
-localStorage in JavaScript: A complete guide
-https://blog.logrocket.com/localstorage-javascript-complete-guide/<br>
-
-hour
-https://day.js.org/docs/en/get-set/hour<br>
-
-Is Before
-https://day.js.org/docs/en/query/is-before<br>
-
-Using data attributes
-https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes<br>
-
-Add and remove a class on click using jQuery?
-https://stackoverflow.com/questions/19520446/add-and-remove-a-class-on-click-using-jquery
-
-
-Why Bootstrap 4 and FontAwesome 5 Are A Killer Combo
-https://www.danylkoweb.com/Blog/why-bootstrap-4-and-fontawesome-5-are-a-killer-combo-GF
+[JavaScript] - How to get the date 3 days after today in JavaScript 
+https://www.shecodes.io/athena/42795-how-to-get-the-date-3-days-after-today-in-javascript<br>
