@@ -47,8 +47,8 @@ let queryURLAthens = "https://api.openweathermap.org/data/2.5/weather?q=Athens,G
 let queryURLOttawa = "https://api.openweathermap.org/data/2.5/weather?q=Ottawa,CA&appid=" + APIKey;
 */
 
-
-let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=51.5073219&lon=-0.1276474&appid=" + APIKey; //London GB
+<!--
+    let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=51.5073219&lon=-0.1276474&appid=" + APIKey; //London GB-->
 
 //let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=51.5073219&lon=-0.1276474&appid=" + APIKey; //London GB
 
@@ -75,20 +75,12 @@ fetch(queryURL)
         // Calculate the temperature (converted from Kelvin to Celsius)
         let temperatureCelsius = data.current.temp - 273.15;
 
-
         const iconCode = data.current.weather[0].icon;
-
-        const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
-        
-        
-        $('#weather-icon').html(`<img src="${iconUrl}" alt="Weather Icon">`);
-
+        const iconUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";     
+        $("#weather-icon").html("<img src='" + iconUrl + "' alt='Weather Icon'>");
      
         // Current Weather
-
         document.querySelector('.cityAndCurrentDate').innerHTML = citiesArr[1] + ' ' + currentDate + ' ' + '<img src="' + iconUrl + '" alt="Weather Icon">';
-
-
         document.querySelector('.currentTemp').textContent = "Temp: " + temperatureCelsius.toFixed(2) + "°C";
         document.querySelector('.currentWind').textContent = "Wind: " + data.current.wind_speed + " m/s";
         document.querySelector('.currentHumidity').textContent = "Humidity: " + data.current.humidity + "%";

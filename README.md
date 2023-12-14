@@ -76,3 +76,10 @@ https://betterprogramming.pub/formatting-dates-with-the-datetimeformat-object-9c
 
 [JavaScript] - How to get the date 3 days after today in JavaScript 
 https://www.shecodes.io/athena/42795-how-to-get-the-date-3-days-after-today-in-javascript<br>
+
+[JavaScript] - How to add weather visuals using JavaScript and APIs 
+https://www.shecodes.io/athena/37844-how-to-add-weather-visuals-using-javascript-and-apis<br>
+
+Weather Conditions
+https://openweathermap.org/weather-conditions<br>
+
