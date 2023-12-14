@@ -87,3 +87,9 @@ https://www.shecodes.io/athena/37844-how-to-add-weather-visuals-using-javascript
 Weather Conditions
 https://openweathermap.org/weather-conditions<br>
 
+How to get the last element in an array in JavaScript?
+https://medium.com/codex/how-to-get-the-last-element-in-an-array-in-javascript-c106f2f4b830<br>
+
+
+
+
