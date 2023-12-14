@@ -75,6 +75,10 @@ fetch(queryURL)
         // Calculate the temperature (converted from Kelvin to Celsius)
         let temperatureCelsius = data.current.temp - 273.15;
         let temperatureCelsiusDayAfterOne = data.daily[0].temp.day - 273.15;
+        let temperatureCelsiusDayAfterTwo = data.daily[1].temp.day - 273.15;
+        let temperatureCelsiusDayAfterThree = data.daily[2].temp.day - 273.15;
+        let temperatureCelsiusDayAfterFour = data.daily[3].temp.day - 273.15;
+        let temperatureCelsiusDayAfterFive = data.daily[4].temp.day - 273.15;
 
         const iconCode = data.current.weather[0].icon;
         const iconUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";
@@ -84,6 +88,25 @@ fetch(queryURL)
         const iconUrlDayAfterOne = "http://openweathermap.org/img/wn/" + iconCodeDayAfterOne + ".png";
         $("#weather-icon").html("<img src='" + iconUrlDayAfterOne + "' alt='Weather Icon'>");
 
+        const iconCodeDayAfterTwo = data.daily[1].weather[0].icon;
+        const iconUrlDayAfterTwo = "http://openweathermap.org/img/wn/" + iconCodeDayAfterTwo + ".png";
+        $("#weather-icon").html("<img src='" + iconUrlDayAfterTwo + "' alt='Weather Icon'>");
+
+        const iconCodeDayAfterThree = data.daily[2].weather[0].icon;
+        const iconUrlDayAfterThree = "http://openweathermap.org/img/wn/" + iconCodeDayAfterThree + ".png";
+        $("#weather-icon").html("<img src='" + iconUrlDayAfterThree + "' alt='Weather Icon'>");
+
+        const iconCodeDayAfterFour = data.daily[3].weather[0].icon;
+        const iconUrlDayAfterFour = "http://openweathermap.org/img/wn/" + iconCodeDayAfterFour + ".png";
+        $("#weather-icon").html("<img src='" + iconUrlDayAfterFour + "' alt='Weather Icon'>");
+
+        const iconCodeDayAfterFive = data.daily[4].weather[0].icon;
+        const iconUrlDayAfterFive = "http://openweathermap.org/img/wn/" + iconCodeDayAfterFive + ".png";
+        $("#weather-icon").html("<img src='" + iconUrlDayAfterFive + "' alt='Weather Icon'>");
+
+
+
+
      
         // Current Weather
         document.querySelector('.cityAndCurrentDate').innerHTML = citiesArr[1] + ' ' + currentDate + ' ' + '<img src="' + iconUrl + '" alt="Weather Icon">';
@@ -92,11 +115,37 @@ fetch(queryURL)
         document.querySelector('.currentHumidity').textContent = "Humidity: " + data.current.humidity + "%";
 
         // Forecast over 5 days
-        document.querySelector('.forecastDate').innerHTML = oneDayAfterDate;
-        document.querySelector('.forecastIcon').innerHTML = '<img src="' + iconUrlDayAfterOne + '" alt="Weather Icon">';
-        document.querySelector('.forecastTemp').innerHTML = "Temp: " + temperatureCelsiusDayAfterOne.toFixed(2) + "°C";
-        document.querySelector('.forecastWind').textContent = "Wind: " + data.daily[0].wind_speed + " m/s";
-        document.querySelector('.forecastHumidity').textContent = "Humidity: " + data.daily[0].humidity + "%";
+        document.querySelector('.forecastDateOne').innerHTML = oneDayAfterDate;
+        document.querySelector('.forecastIconOne').innerHTML = '<img src="' + iconUrlDayAfterOne + '" alt="Weather Icon">';
+        document.querySelector('.forecastTempOne').innerHTML = "Temp: " + temperatureCelsiusDayAfterOne.toFixed(2) + "°C";
+        document.querySelector('.forecastWindOne').textContent = "Wind: " + data.daily[0].wind_speed + " m/s";
+        document.querySelector('.forecastHumidityOne').textContent = "Humidity: " + data.daily[0].humidity + "%";
+
+        document.querySelector('.forecastDateTwo').innerHTML = twoDaysAfterDate;
+        document.querySelector('.forecastIconTwo').innerHTML = '<img src="' + iconUrlDayAfterTwo + '" alt="Weather Icon">';
+        document.querySelector('.forecastTempTwo').innerHTML = "Temp: " + temperatureCelsiusDayAfterTwo.toFixed(2) + "°C";
+        document.querySelector('.forecastWindTwo').textContent = "Wind: " + data.daily[1].wind_speed + " m/s";
+        document.querySelector('.forecastHumidityTwo').textContent = "Humidity: " + data.daily[1].humidity + "%";
+
+        document.querySelector('.forecastDateThree').innerHTML = threeDaysAfterDate;
+        document.querySelector('.forecastIconThree').innerHTML = '<img src="' + iconUrlDayAfterThree + '" alt="Weather Icon">';
+        document.querySelector('.forecastTempThree').innerHTML = "Temp: " + temperatureCelsiusDayAfterThree.toFixed(2) + "°C";
+        document.querySelector('.forecastWindThree').textContent = "Wind: " + data.daily[2].wind_speed + " m/s";
+        document.querySelector('.forecastHumidityThree').textContent = "Humidity: " + data.daily[2].humidity + "%";
+
+        document.querySelector('.forecastDateFour').innerHTML = fourDaysAfterDate;
+        document.querySelector('.forecastIconFour').innerHTML = '<img src="' + iconUrlDayAfterFour + '" alt="Weather Icon">';
+        document.querySelector('.forecastTempFour').innerHTML = "Temp: " + temperatureCelsiusDayAfterFour.toFixed(2) + "°C";
+        document.querySelector('.forecastWindFour').textContent = "Wind: " + data.daily[3].wind_speed + " m/s";
+        document.querySelector('.forecastHumidityFour').textContent = "Humidity: " + data.daily[3].humidity + "%";
+
+        document.querySelector('.forecastDateFive').innerHTML = fiveDaysAfterDate;
+        document.querySelector('.forecastIconFive').innerHTML = '<img src="' + iconUrlDayAfterFive + '" alt="Weather Icon">';
+        document.querySelector('.forecastTempFive').innerHTML = "Temp: " + temperatureCelsiusDayAfterFive.toFixed(2) + "°C";
+        document.querySelector('.forecastWindFive').textContent = "Wind: " + data.daily[4].wind_speed + " m/s";
+        document.querySelector('.forecastHumidityFive').textContent = "Humidity: " + data.daily[4].humidity + "%";
+
+
 
 
     })

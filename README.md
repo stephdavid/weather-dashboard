@@ -57,6 +57,10 @@ The app should:
 
 * Last evening's bootcamp class was quite enlightening on APIs, and JavaScript's fetch function. I started working on getting city weather info from OpenWeatherMAP. I already had a key, and using the Current weather API - https://openweathermap.org/current produced some nice results. To complete the info required for this project, however, I needed the Daily Forecast 16 Days API. After obtaining the latitude and longitude of the six cities I'm using, I tried to get that info. But I'm getting a 401 error. I searched for the reason why and determined that I needed to subscribe to the One Call API 3.0 level. With this, I would only start incurring charges after 1,000 API calls per day. So, I subscribed. As this did not resolve the issue - I was still get a 401 error, I started an email contact with the help desk. I responded to the latest email with a copy of the URL API call. The Service replied - I needed a different syntax as shown on their page https://openweathermap.org/api/one-call-3#current I tried it - it worked. To get the latitude and longitude I used Open Weather Map's GeoCoding API - https://openweathermap.org/api/geocoding-api. 
 
+* Populated today's weather info and one day after info from the API data. Commencing work on a for loop to gather info for all five days forecasts.
+
+* No for loop just yet (if at all), but all 5 days populated.
+
 
 ---
 
