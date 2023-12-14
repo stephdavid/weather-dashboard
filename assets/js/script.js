@@ -35,20 +35,28 @@ $(document).ready(function () {
 
     let citiesArr = ["Bexleyheath (Gtr London), UK", "London, UK", "Ottawa, Canada", "Kingston, Jamaica", "Dublin, Ireland", "Athens, Greece"];
 
-    /*
-    let queryURLLondon = "https://api.openweathermap.org/data/2.5/weather?q=London,UK&appid=" + APIKey;
-    
-    let queryURLBexleyheath = "https://api.openweathermap.org/data/2.5/weather?q=Bexleyheath,UK&appid=" + APIKey;
-    
-    let queryURLDublin = "https://api.openweathermap.org/data/2.5/weather?q=Dublin,IRE&appid=" + APIKey;
-    
-    let queryURLKingston = "https://api.openweathermap.org/data/2.5/weather?q=Kingston,JM&appid=" + APIKey;
-    
-    let queryURLAthens = "https://api.openweathermap.org/data/2.5/weather?q=Athens,GR&appid=" + APIKey;
-    
-    let queryURLOttawa = "https://api.openweathermap.org/data/2.5/weather?q=Ottawa,CA&appid=" + APIKey;
-    */
+    $("#search-button").on("click", function (event) {
+        event.preventDefault();
+        // This line grabs the input from the textbox
 
+
+        let city = $("#search-input").val().trim();
+        citiesArr.push(city);
+    });
+
+    const div = document.querySelector('.input-group-append')
+
+    div.addEventListener("click", (event) => {
+        if (event.target.tagName === 'BUTTON') {
+           // console.log(event.target.innerText);
+            selectedBtn = event.target.innerText;
+          //  console.log(selectedBtn)
+        }
+    })
+
+    // if button then
+    // elseif search then
+    // else placeholder
 
     let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=51.5073219&lon=-0.1276474&appid=" + APIKey; //London GB
 

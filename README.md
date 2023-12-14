@@ -61,6 +61,7 @@ The app should:
 
 * No for loop just yet (if at all), but all 5 days populated.
 
+* OK, I've now got the search getting a result, as well as the buttons with event delegation - how do I get this data to replace citiesArr on line 120. Somehow this info will inform what the queryURL will be 
 
 ---
 
@@ -90,6 +91,8 @@ https://openweathermap.org/weather-conditions<br>
 How to get the last element in an array in JavaScript?
 https://medium.com/codex/how-to-get-the-last-element-in-an-array-in-javascript-c106f2f4b830<br>
 
+document.ready()
+https://learn.jquery.com/using-jquery-core/document-ready/<br>
 
-
-
+Event Delegation in JavaScript –Explained with an Example
+https://www.freecodecamp.org/news/event-delegation-javascript/<br>
