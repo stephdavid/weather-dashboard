@@ -47,8 +47,8 @@ let queryURLAthens = "https://api.openweathermap.org/data/2.5/weather?q=Athens,G
 let queryURLOttawa = "https://api.openweathermap.org/data/2.5/weather?q=Ottawa,CA&appid=" + APIKey;
 */
 
-<!--
-    let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=51.5073219&lon=-0.1276474&appid=" + APIKey; //London GB-->
+
+    let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=51.5073219&lon=-0.1276474&appid=" + APIKey; //London GB
 
 //let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=51.5073219&lon=-0.1276474&appid=" + APIKey; //London GB
 
@@ -74,10 +74,16 @@ fetch(queryURL)
 
         // Calculate the temperature (converted from Kelvin to Celsius)
         let temperatureCelsius = data.current.temp - 273.15;
+        let temperatureCelsiusDayAfterOne = data.daily[0].temp.day - 273.15;
 
         const iconCode = data.current.weather[0].icon;
-        const iconUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";     
+        const iconUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";
         $("#weather-icon").html("<img src='" + iconUrl + "' alt='Weather Icon'>");
+
+        const iconCodeDayAfterOne = data.daily[0].weather[0].icon;
+        const iconUrlDayAfterOne = "http://openweathermap.org/img/wn/" + iconCodeDayAfterOne + ".png";
+        $("#weather-icon").html("<img src='" + iconUrlDayAfterOne + "' alt='Weather Icon'>");
+
      
         // Current Weather
         document.querySelector('.cityAndCurrentDate').innerHTML = citiesArr[1] + ' ' + currentDate + ' ' + '<img src="' + iconUrl + '" alt="Weather Icon">';
@@ -86,7 +92,11 @@ fetch(queryURL)
         document.querySelector('.currentHumidity').textContent = "Humidity: " + data.current.humidity + "%";
 
         // Forecast over 5 days
-
+        document.querySelector('.forecastDate').innerHTML = oneDayAfterDate;
+        document.querySelector('.forecastIcon').innerHTML = '<img src="' + iconUrlDayAfterOne + '" alt="Weather Icon">';
+        document.querySelector('.forecastTemp').innerHTML = "Temp: " + temperatureCelsiusDayAfterOne.toFixed(2) + "°C";
+        document.querySelector('.forecastWind').textContent = "Wind: " + data.daily[0].wind_speed + " m/s";
+        document.querySelector('.forecastHumidity').textContent = "Humidity: " + data.daily[0].humidity + "%";
 
 
     })

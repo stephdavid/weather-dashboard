@@ -17,15 +17,14 @@
 </head>
 
 <body>
-  <header class="container-fluid text-center text-white p-2 weather-header col-12"
-    style="background-image: linear-gradient(to bottom right, rgb(123, 165, 228), rgb(3, 3, 100));">
-    <h1>Weather Dashboard</h1>
+  <header class="container-fluid text-center m-lg-5 pt-lg-5 p-2 weather-header col-12" style="color:#2d3e50">
+        <h1>Weather Dashboard</h1>
   </header>
 
   <div class="container-fluid">
     <div class="row">
       <aside class="col-xl-12 col-xxl-2 pb-3">
-        <h2 id="form-heading" class="mt-1 h3 form-label">Search for a City:</h2>
+        <h2 id="form-heading" class="mt-1 h5 form-label">Search for a City:</h2>
         <form id="search-form" class="form">
           <div class="form-inline form-group">
             <div class="input-group">
@@ -69,13 +68,14 @@
         </section>
 
         <h2 class="pl-2">5 Day Forecast:</h2>
+
         <section id="forecast" class="row mt-3 d-flex justify-content-evenly" role="region" aria-live="polite">
           <div class="card text-white mb-3" style="max-width: 17rem; background-color: #2d3e50">
-            <h3 class="card-header">27/12/2023</h3>
-            <p class="card-text">Cloud</p>
-            <p class="card-text">Temp: 13.63&deg;C</p>
-            <p class="card-text">Wind: 1.7 KPH</p>
-            <p class="card-text">Humidity: 44%</p>
+            <h3 class="forecastDate"></h3>
+            <p class="forecastIcon"></p>
+            <p class="forecastTemp"></p>
+            <p class="forecastWind"></p>
+            <p class="forecastHumidity"></p>
           </div>
 
           <div class="card text-white mb-3" style="max-width: 17rem; background-color: #2d3e50">
