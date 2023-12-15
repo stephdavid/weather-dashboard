@@ -1,13 +1,12 @@
 const APIKey = "d6c2a75319ec8ac898391d9718091c3b";
 
-let selectedCity = "London";
+let selectedCity = "";
 let city = "";
 let cities = ["London"];
 
 function populateTheCards(data) {
     // Get today's date
     let date = new Date();
-
     date.setDate(date.getDate());
 
     // Calculate dates for one to five days after today
@@ -118,7 +117,6 @@ function getCurrentAndForcastedWeather(latitude, longitude) {
             console.log("API Response:", data);
             populateTheCards(data);
         })
-
 }
 
 function getLatAndLon(selectedCity) {
@@ -144,17 +142,20 @@ $("#search-button").on("click", function (event) {
     event.preventDefault();
     // This line grabs the input from the textbox
     let city = $("#search-input").val().trim();
-    cities.push(city);
-    //const last = array[array.length - 1]
-    selectedCity = cities[cities.length - 1];
-    getLatAndLon(selectedCity);
+    if (city) {
+        cities.push(city);
+        selectedCity = cities[cities.length - 1];
+        getLatAndLon(selectedCity);
+    } else {
+        alert("You need to input a city name");
+        return false;
+    }
 });
 
 const div = document.querySelector('.input-group-append')
 
 div.addEventListener("click", (event) => {
     if (event.target.tagName === 'BUTTON') {
-        //console.log(event.target.innerText);
         selectedCity = event.target.innerText;
         console.log(selectedCity);
         cities.push(selectedCity);
