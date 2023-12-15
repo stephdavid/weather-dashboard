@@ -86,6 +86,27 @@ $(document).ready(function () {
                     let longitude = data[0].lon;
                     console.log("latitude: " + latitude);
                     console.log("longitude: " + longitude);
+                    let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=" + latitude + "&lon=" + longitude +"&appid=" + APIKey; 
+                    fetch(queryURL)
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then(function (data) {
+                            console.log("Query URL: " + queryURL);
+
+                            //if (Array.isArray(data) && data.length > 0) {
+                            if (typeof data === 'object' && data !== null) {
+                                // Access the temp property from the first item in the array
+                                let temperature = data.daily[0].temp.day;
+                                console.log("Temperature: " + temperature);
+                            } else {
+                             console.error("Invalid or empty response from the API.");
+                           }
+                            // Log the resulting object
+                            console.log("API Response:" + data);
+                            return data;
+                        })             
+
                 } else {
                     console.error("Invalid or empty response from the API.");
                 }
@@ -97,31 +118,7 @@ $(document).ready(function () {
  //}            
 
 
-
-let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=51.5073219&lon=-0.1276474&appid=" + APIKey; //London GB
-
-//let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=51.5073219&lon=-0.1276474&appid=" + APIKey; //London GB
-
-//let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=53.3498006&lon=-6.2602964&appid=" + APIKey; //Dublin IE
-
-//let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=37.9839412&lon=23.7283052&appid=" + APIKey; //Athens GR
-
-//let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=45.424721&lon=-75.695000&appid=" + APIKey; //Ottawa CA
-
-//let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=17.9712148&lon=-76.7928128&appid=" + APIKey; //Kingston JM
-
-//let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=51.4634854&lon=0.1480552&appid=" + APIKey; //Bexleyheath GB
 /*
-fetch(queryURL)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        console.log("Query URL:", queryURL);
-
-        // Log the resulting object
-        console.log("API Response:", data);
-
         // Calculate the temperature (converted from Kelvin to Celsius)
         let temperatureCelsius = data.current.temp - 273.15;
         let temperatureCelsiusDayAfterOne = data.daily[0].temp.day - 273.15;
