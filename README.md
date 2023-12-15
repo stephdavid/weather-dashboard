@@ -31,23 +31,23 @@ https://stephdavid.github.io/weather-dashboard/
 
 The app should:
 
-* Create a weather dashboard with form inputs.
-  * When a user searches for a city they are presented with current and future conditions for that city and that city is added to the search history
+* Create a weather dashboard with form inputs. 
+✔️
+  * When a user searches for a city they are presented with current and future conditions for that city and that city is added to the search history 
   * When a user views the current weather conditions for that city they are presented with:
-    * The city name
-    * The date
-    * An icon representation of weather conditions
-    * The temperature
-    * The humidity
-    * The wind speed
+    * The city name ✔️
+    * The date ✔️
+    * An icon representation of weather conditions ✔️
+    * The temperature ✔️
+    * The humidity ✔️
+    * The wind speed ✔️
   * When a user view future weather conditions for that city they are presented with a 5-day forecast that displays:
-    * The date
-    * An icon representation of weather conditions
-    * The temperature
-    * The humidity
+    * The date ✔️
+    * An icon representation of weather conditions ✔️
+    * The temperature ✔️
+    * The humidity ✔️
   * When a user click on a city in the search history they are again presented with current and future conditions for that city
 
-✔️
  
 ---
 
@@ -80,11 +80,15 @@ The app should:
 
 * Having got the app working, I've started on error handling, using the handling mechanism of the Fetch API. 
 
-In the on click event, added handling of situation where the user does not input any info in the search input box.
+      1. In the on click event, added handling of situation where the user does not input any info in the search input box.
 
-In the getLatAndLon getCurrentAndForecastedWeather function, handled the error of a bad network response.
+      2. In the getLatAndLon getCurrentAndForecastedWeather function, handled the error of a bad network response.
 
-In the getLatAndLon function, handled the situation where the user inputs either gibberish or an incorrect city name.
+      3. In the getLatAndLon function, handled the situation where the user inputs either gibberish or an incorrect city name.
+
+* Reviewing the Acceptance Criteria, I still need to do a search history using localStorage.
+
+* After a lot of moving  code around I managed to get a partial solution. Two outstanding issues: how to exend the event propagation of the buttons to the history buttons  and how to have more than one item in LocslStorage
 
 ---
 

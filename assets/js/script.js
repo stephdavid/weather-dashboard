@@ -1,11 +1,38 @@
 const APIKey = "d6c2a75319ec8ac898391d9718091c3b";
 
-let selectedCity = "";
-let city = "";
 let cities = ["London"];
 
+function populateHistory() {
+    // Get a string from local storage
+    let getHistory = localStorage.getItem("selectedCity");
+
+    try {
+        // Parse the string into an array
+        getHistory = JSON.parse(getHistory);
+
+        // Check if getHistory is an array before iterating
+        if (Array.isArray(getHistory) && getHistory.length > 0) {
+            // Iterate over the array to create and fill in the buttons
+            $.each(getHistory, function (index, value) {
+                //alert(index + ": " + value);
+                let button = $('<button>')
+                    .addClass("btn btn-lg text-white mt-2 search-button")
+                    .css("width", "300px")
+                    .css("background-color", "#6d7aa9")
+                    .text(value);
+                    $('#history').append(button);
+            });
+        }
+    } catch (error) {
+        // Handle the case where parsing fails
+        console.error("Error parsing data:", error);
+        alert("Error parsing data from local storage.");
+    }
+}
+
+
 function populateTheCards(data) {
-    // Get today's date
+     // Get today's date
     let date = new Date();
     date.setDate(date.getDate());
 
@@ -68,7 +95,8 @@ function populateTheCards(data) {
     $("#weather-icon").html("<img src='" + iconUrlDayAfterFive + "' alt='Weather Icon'>");
 
     // Current Weather
-    document.querySelector('.cityAndCurrentDate').innerHTML = cities[cities.length-1] + ' ' + currentDate + ' ' + '<img src="' + iconUrl + '" alt="Weather Icon">';
+    selectedCity = selectedCity || "London";
+    document.querySelector('.cityAndCurrentDate').innerHTML = selectedCity + ' ' + currentDate + ' ' + '<img src="' + iconUrl + '" alt="Weather Icon">';
     document.querySelector('.currentTemp').textContent = "Temp: " + temperatureCelsius.toFixed(2) + "°C";
     document.querySelector('.currentWind').textContent = "Wind: " + data.current.wind_speed + " m/s";
     document.querySelector('.currentHumidity').textContent = "Humidity: " + data.current.humidity + "%";
@@ -103,9 +131,11 @@ function populateTheCards(data) {
     document.querySelector('.forecastTempFive').innerHTML = "Temp: " + temperatureCelsiusDayAfterFive.toFixed(2) + "°C";
     document.querySelector('.forecastWindFive').textContent = "Wind: " + data.daily[4].wind_speed + " m/s";
     document.querySelector('.forecastHumidityFive').textContent = "Humidity: " + data.daily[4].humidity + "%";
+
+    populateHistory();
 };
 
-function getCurrentAndForcastedWeather(latitude, longitude) {
+function getCurrentAndForcastedWeather(latitude, longitude, selectedCity) {
     let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey;
     fetch(queryURL)
         .then(function (response) {
@@ -117,7 +147,7 @@ function getCurrentAndForcastedWeather(latitude, longitude) {
         .then(function (data) {
             console.log("Query URL:", queryURL);
             console.log("API Response:", data);
-            populateTheCards(data);
+            populateTheCards(data, selectedCity);
         })
         .catch(function (error) {
             console.error("Error fetching data:", error);
@@ -145,6 +175,9 @@ function getLatAndLon(selectedCity) {
                 console.log("latitude: " + latitude);
                 console.log("longitude: " + longitude);
                 getCurrentAndForcastedWeather(latitude, longitude);
+
+                // Convert selectedCity to an array and store it as a string
+                let storeInHistory = localStorage.setItem("selectedCity", JSON.stringify([selectedCity]));
             } else {
                 alert("City not found. Please enter a valid city name.");
             }
@@ -162,24 +195,29 @@ $("#search-button").on("click", function (event) {
     let city = $("#search-input").val().trim();
     if (city) {
         cities.push(city);
-        selectedCity = cities[cities.length - 1];
-        getLatAndLon(selectedCity);
+        getLatAndLon(city);
     } else {
         alert("You need to input a city name");
         return false;
     }
 });
 
+let selectedCity = ""; //  selectedCity now outside the event listener
+
 const div = document.querySelector('.input-group-append')
 
 div.addEventListener("click", (event) => {
     if (event.target.tagName === 'BUTTON') {
-        selectedCity = event.target.innerText;
+        if (event.target.classList.contains('search-button')) {
+            selectedCity = $("#search-input").val().trim();
+        } else {
+            // Clicked on other buttons inside the div
+            selectedCity = event.target.innerText;
+        }
         console.log(selectedCity);
-        cities.push(selectedCity);
         getLatAndLon(selectedCity);
     }
-})
+});
 
 let queryAPI = "https://api.openweathermap.org/data/3.0/onecall?lat=51.5073219&lon=-0.1276474&appid=" + APIKey; //London
 fetch(queryAPI)
@@ -188,7 +226,10 @@ fetch(queryAPI)
     })
     .then(function (data) {
         console.log("Query URL:", queryAPI);
-        // Log the resulting object
         console.log("API Response:", data);
-        populateTheCards(data);
+        populateTheCards(data, "London");
     })
+    .catch(function (error) {
+        console.error("Error fetching data:", error);
+        alert("Something went wrong when getting the data. Please try again.");
+    });
