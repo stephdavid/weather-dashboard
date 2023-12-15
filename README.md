@@ -78,6 +78,13 @@ The app should:
     d.	In getCurrentAndForecastedWeather 1. call (using passed lat & lon info) to weather api 2. the data object from that call included as an argument in the call to function populateTheCards(data)
     e.	In populateTheCards() fill in the name of the city, and the weather data for today and following 5 days
 
+* Having got the app working, I've started on error handling, using the handling mechanism of the Fetch API. 
+
+In the on click event, added handling of situation where the user does not input any info in the search input box.
+
+In the getLatAndLon getCurrentAndForecastedWeather function, handled the error of a bad network response.
+
+In the getLatAndLon function, handled the situation where the user inputs either gibberish or an incorrect city name.
 
 ---
 
@@ -112,3 +119,14 @@ https://learn.jquery.com/using-jquery-core/document-ready/<br>
 
 Event Delegation in JavaScript –Explained with an Example
 https://www.freecodecamp.org/news/event-delegation-javascript/<br>
+
+Using the Fetch API
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch<br>
+
+Implement error handling when using the Fetch API
+https://web.dev/articles/fetch-api-error-handling<br>
+
+Error handling with the Fetch API
+https://rapidapi.com/guides/error-handling-fetch<br>
+
+

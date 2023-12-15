@@ -109,14 +109,20 @@ function getCurrentAndForcastedWeather(latitude, longitude) {
     let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey;
     fetch(queryURL)
         .then(function (response) {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
             return response.json();
         })
         .then(function (data) {
-            console.log("Query URL:", queryAPI);
-            // Log the resulting object
+            console.log("Query URL:", queryURL);
             console.log("API Response:", data);
             populateTheCards(data);
         })
+        .catch(function (error) {
+            console.error("Error fetching data:", error);
+            alert("Something went wrong when getting the data. Please try again.");
+        });
 }
 
 function getLatAndLon(selectedCity) {
@@ -124,18 +130,30 @@ function getLatAndLon(selectedCity) {
     let geoURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + APIKey; // get lat & lon
     fetch(geoURL)
         .then(function (response) {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
             return response.json();
         })
         .then(function (data) {
             console.log("Query URL: " + geoURL);
-            // Log the resulting object
             console.log("API Response:" + data);
-            let latitude = data[0].lat;
-            let longitude = data[0].lon;
-            console.log("latitude: " + latitude);
-            console.log("longitude: " + longitude);
-            getCurrentAndForcastedWeather(latitude, longitude);
+
+            if (data.length > 0) {
+                let latitude = data[0].lat;
+                let longitude = data[0].lon;
+                console.log("latitude: " + latitude);
+                console.log("longitude: " + longitude);
+                getCurrentAndForcastedWeather(latitude, longitude);
+            } else {
+                alert("City not found. Please enter a valid city name.");
+            }
         })
+        .catch(function (error) {
+            console.error("Error fetching data:", error);
+            // Handle the error, for example, display an error message to the user
+            alert("Something went wrong getting the data. Please try again.");
+        });
 }
 
 $("#search-button").on("click", function (event) {
