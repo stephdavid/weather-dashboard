@@ -65,6 +65,20 @@ The app should:
 
 * Am able to pull specific info from the Array returned by the openweathermap geocoding API and the Object returned by the openweathermap one-call-3 obtained from the longitude and latitude elements from the geogoding API which were required by the one-call-3 (this is the API that shows data over several days). The "free" api provides only current day info. Now, I should be able to plug in the info into the html page.
 
+* Overview of where I'm at : Weather dashboard – what am I doing 
+    1.	On page load – display default city (London) weather and icon for today, and forecasts for following 5 days
+    How achieved:
+    a.	jQuery document.ready – a call to function getDefaultInfo
+    b.	In getDefaultInfo function: 1. Default call (using London lat & lon info) to weather api 2. The data object from that call included as an argument in the call to function populateTheCards(data)
+    c.	In populateTheCards() fill in the name of the city, and the weather data for today and following 5 days
+    2.	On user input and search or selection of a city button, the name of the city is changed to match the user selection and its current-day weather and 5-day forecast is displayed. How achieved:
+    a.	On click event for Search – 1. Collect the string input by the user and push it to the cities array 2. Assign the last item in the cities array (which will be the user info) to a variable 3. Call the function getLatAndLon passing to it selectedCity
+    b.	Event listener(propagation) for the buttons. 1. Value of button selected assigned to variable selectedCity 3. Call the function getLatAndLon passing to it selectedCity
+    c.	In getLatAndLon function, a call to the geoloc api with the selectedCity to get its latitude and longitude. Call the function getCurrentAndForecastedWeather passing it latitude and longitude.
+    d.	In getCurrentAndForecastedWeather 1. call (using passed lat & lon info) to weather api 2. the data object from that call included as an argument in the call to function populateTheCards(data)
+    e.	In populateTheCards() fill in the name of the city, and the weather data for today and following 5 days
+
+
 ---
 
 ### References
