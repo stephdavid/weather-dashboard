@@ -63,6 +63,8 @@ The app should:
 
 * OK, I've now got the search getting a result, as well as the buttons with event delegation - how do I get this data to replace citiesArr on line 120. Somehow this info will inform what the queryURL will be 
 
+* Am able to pull specific info from the Array returned by the openweathermap geocoding API and the Object returned by the openweathermap one-call-3 obtained from the longitude and latitude elements from the geogoding API which were required by the one-call-3 (this is the API that shows data over several days). The "free" api provides only current day info. Now, I should be able to plug in the info into the html page.
+
 ---
 
 ### References
