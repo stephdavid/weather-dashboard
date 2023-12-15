@@ -1,11 +1,8 @@
 const APIKey = "d6c2a75319ec8ac898391d9718091c3b";
 
-let selectedBtn = "";
 let selectedCity = "London";
-let city = "Paris";
-//console.log(city);
-
-let cities = ["Bexleyheath", "London", "Ottawa", "Kingston", "Dublin", "Athens"];
+let city = "";
+let cities = ["London"];
 
 function populateTheCards(data) {
     // Get today's date
@@ -72,7 +69,7 @@ function populateTheCards(data) {
     $("#weather-icon").html("<img src='" + iconUrlDayAfterFive + "' alt='Weather Icon'>");
 
     // Current Weather
-    document.querySelector('.cityAndCurrentDate').innerHTML = selectedCity + ' ' + currentDate + ' ' + '<img src="' + iconUrl + '" alt="Weather Icon">';
+    document.querySelector('.cityAndCurrentDate').innerHTML = cities[cities.length-1] + ' ' + currentDate + ' ' + '<img src="' + iconUrl + '" alt="Weather Icon">';
     document.querySelector('.currentTemp').textContent = "Temp: " + temperatureCelsius.toFixed(2) + "°C";
     document.querySelector('.currentWind').textContent = "Wind: " + data.current.wind_speed + " m/s";
     document.querySelector('.currentHumidity').textContent = "Humidity: " + data.current.humidity + "%";
@@ -109,59 +106,38 @@ function populateTheCards(data) {
     document.querySelector('.forecastHumidityFive').textContent = "Humidity: " + data.daily[4].humidity + "%";
 };
 
-function getDefaultInfo() {
-    let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=51.5073219&lon=-0.1276474&appid=" + APIKey; //London
-    fetch(queryURL)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function () {
-            //first check to see if the result is an object/array and has info
-            if (typeof data === 'object' && !Array.isArray(data) && data !== null) {
-                populateTheCards(data);
-            }
-        })
-}
-
 function getCurrentAndForcastedWeather(latitude, longitude) {
     let queryURL = "https://api.openweathermap.org/data/3.0/onecall?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey;
     fetch(queryURL)
         .then(function (response) {
             return response.json();
         })
-        .then(function () {
-            populateCards(data);
+        .then(function (data) {
+            console.log("Query URL:", queryAPI);
+            // Log the resulting object
+            console.log("API Response:", data);
+            populateTheCards(data);
         })
+
 }
 
-function getLatAndLon() {
-    if (selectedBtn || selectedCity) {
-        //if (selectedBtn) {
-        let city = selectedBtn || selectedCity;
-        //let city = selectedBtn;
-        console.log("I'm here!");
-        let geoURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + APIKey; // get lat & lon
-        fetch(geoURL)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                console.log("Query URL: " + geoURL);
-
-                // Log the resulting object
-                console.log("API Response:" + data);
-
-                // Check if the response is an array and has at least one item
-                if (Array.isArray(data) && data.length > 0) {
-                    // Access the lat property from the first item in the array
-                    let latitude = data[0].lat;
-                    let longitude = data[0].lon;
-                    console.log("latitude: " + latitude);
-                    console.log("longitude: " + longitude);
-                    getCurrentAndForcastedWeather(latitude, longitude);
-                }
-            })
-    }
+function getLatAndLon(selectedCity) {
+    city = selectedCity;
+    let geoURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + APIKey; // get lat & lon
+    fetch(geoURL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log("Query URL: " + geoURL);
+            // Log the resulting object
+            console.log("API Response:" + data);
+            let latitude = data[0].lat;
+            let longitude = data[0].lon;
+            console.log("latitude: " + latitude);
+            console.log("longitude: " + longitude);
+            getCurrentAndForcastedWeather(latitude, longitude);
+        })
 }
 
 $("#search-button").on("click", function (event) {
@@ -178,13 +154,22 @@ const div = document.querySelector('.input-group-append')
 
 div.addEventListener("click", (event) => {
     if (event.target.tagName === 'BUTTON') {
-        // console.log(event.target.innerText);
+        //console.log(event.target.innerText);
         selectedCity = event.target.innerText;
-        console.log(selectedCity)
+        console.log(selectedCity);
+        cities.push(selectedCity);
+        getLatAndLon(selectedCity);
     }
 })
 
-$(document).ready(function () {
-    // console.log("ready!");
-    getDefaultInfo();
-});
+let queryAPI = "https://api.openweathermap.org/data/3.0/onecall?lat=51.5073219&lon=-0.1276474&appid=" + APIKey; //London
+fetch(queryAPI)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        console.log("Query URL:", queryAPI);
+        // Log the resulting object
+        console.log("API Response:", data);
+        populateTheCards(data);
+    })
