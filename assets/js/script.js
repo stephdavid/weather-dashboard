@@ -1,35 +1,27 @@
 const APIKey = "d6c2a75319ec8ac898391d9718091c3b";
 
 let cities = ["London"];
+let selectedCity = "";
 
 function populateHistory() {
     // Get a string from local storage
     let getHistory = localStorage.getItem("selectedCity");
 
-    try {
-        // Parse the string into an array
-        getHistory = JSON.parse(getHistory);
-
-        // Check if getHistory is an array before iterating
-        if (Array.isArray(getHistory) && getHistory.length > 0) {
-            // Iterate over the array to create and fill in the buttons
-            $.each(getHistory, function (index, value) {
-                //alert(index + ": " + value);
-                let button = $('<button>')
-                    .addClass("btn btn-lg text-black mt-2 search-button")
-                    .css("width", "300px")
-                    .css("background-color", "#6d7aa9")
-                    .text(value);
-                $('#history').append(button);
-            });
+    getHistory = JSON.parse(getHistory);
+    // Check if getHistory is an array before iterating
+    if (Array.isArray(getHistory) && getHistory.length > 0) {
+        const cityButtons = ["button1", "button2", "button3", "button4", "button5", "button6"];
+        
+        // Loop through the buttons and update their text content
+        for (let i = 0; i < getHistory.length && i < cityButtons.length; i++) {
+            const buttonId = cityButtons[i];
+            const newValue = getHistory[i];
+            
+            // Update the button text content
+            document.getElementById(buttonId).textContent = newValue;
         }
-    } catch (error) {
-        // Handle the case where parsing fails
-        console.error("Error parsing data:", error);
-        alert("Error parsing data from local storage.");
     }
 }
-
 
 function populateTheCards(data) {
     // Get today's date
@@ -157,7 +149,8 @@ function getCurrentAndForcastedWeather(latitude, longitude, selectedCity) {
 
 function getLatAndLon(selectedCity) {
     city = selectedCity;
-    let geoURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + APIKey; // get lat & lon
+    let geoURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + APIKey;
+
     fetch(geoURL)
         .then(function (response) {
             if (!response.ok) {
@@ -174,21 +167,27 @@ function getLatAndLon(selectedCity) {
                 let longitude = data[0].lon;
                 console.log("latitude: " + latitude);
                 console.log("longitude: " + longitude);
-                getCurrentAndForcastedWeather(latitude, longitude);
 
-                // Convert selectedCity to an array and store it as a string
-                let storeInHistory = localStorage.setItem("selectedCity", JSON.stringify([selectedCity]));
+                // Retrieve existing history array from local storage
+                let existingHistory = localStorage.getItem("selectedCity");
+                existingHistory = existingHistory ? JSON.parse(existingHistory) : [];
+
+                // Add the new city to the array
+                existingHistory.push(selectedCity);
+
+                // Store the updated array back in local storage
+                localStorage.setItem("selectedCity", JSON.stringify(existingHistory));
+
+                getCurrentAndForcastedWeather(latitude, longitude);
             } else {
                 alert("City not found. Please enter a valid city name.");
             }
         })
         .catch(function (error) {
             console.error("Error fetching data:", error);
-            // Handle the error, for example, display an error message to the user
             alert("Something went wrong getting the data. Please try again.");
         });
 }
-
 $("#search-button").on("click", function (event) {
     event.preventDefault();
     // This line grabs the input from the textbox
@@ -201,8 +200,6 @@ $("#search-button").on("click", function (event) {
         return false;
     }
 });
-
-let selectedCity = ""; //  selectedCity now outside the event listener
 
 const div = document.querySelector('.input-group-append')
 
@@ -231,5 +228,5 @@ fetch(queryAPI)
     })
     .catch(function (error) {
         console.error("Error fetching data:", error);
-        alert("Something went wrong when getting the data. Please try again.");
+        //alert("Something went wrong when getting the data. Please try again.");
     });
