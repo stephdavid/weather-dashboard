@@ -16,13 +16,35 @@ https://stephdavid.github.io/weather-dashboard/
 
 **Initial View**
 
-![initial view ](.png)
+![initial view ](screenshots/default-view.png)
 
 ---
 
-**View with a diffent city selected**
+**Mobile Initial View**
 
-![one stored entry view ](.png)
+![mobile initial view ](screenshots/mobile-default-view.png)
+
+---
+
+**Search Using Search Box**
+  - note the addition of the subject city of the last search in the list of buttons on the right
+
+![search using the search input box ](screenshots/search for using search input box.png)
+![search using the search input box ](screenshots/search%20for%20using%20search%20input%20box.png)
+
+---
+
+**Search History cleared**
+- when the user selects this button the search history is cleared and the page is refreshed to reveal the default page
+  
+![search history (localStorage) cleared ](screenshots/search%20history%20(localStorage)%20cleared.png)
+
+---
+
+**Search Using a Preselected and/or History Button**
+
+![Search  using a preselected and or history button ](screenshots/search%20using%20a%20preselected%20and%20or%20history%20button.png)
+
 
 ---
 
@@ -31,9 +53,9 @@ https://stephdavid.github.io/weather-dashboard/
 
 The app should:
 
-* Create a weather dashboard with form inputs. 
-✔️
-  * When a user searches for a city they are presented with current and future conditions for that city and that city is added to the search history 
+* Create a weather dashboard with form inputs. ✔️
+
+  * When a user searches for a city they are presented with current and future conditions for that city and that city is added to the search history ✔️
   * When a user views the current weather conditions for that city they are presented with:
     * The city name ✔️
     * The date ✔️
@@ -46,7 +68,7 @@ The app should:
     * An icon representation of weather conditions ✔️
     * The temperature ✔️
     * The humidity ✔️
-  * When a user click on a city in the search history they are again presented with current and future conditions for that city
+  * When a user click on a city in the search history they are again presented with current and future conditions for that city✔️
 
  
 ---
