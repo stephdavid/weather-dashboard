@@ -16,11 +16,11 @@ function populateHistory() {
             $.each(getHistory, function (index, value) {
                 //alert(index + ": " + value);
                 let button = $('<button>')
-                    .addClass("btn btn-lg text-white mt-2 search-button")
+                    .addClass("btn btn-lg text-black mt-2 search-button")
                     .css("width", "300px")
                     .css("background-color", "#6d7aa9")
                     .text(value);
-                    $('#history').append(button);
+                $('#history').append(button);
             });
         }
     } catch (error) {
@@ -32,7 +32,7 @@ function populateHistory() {
 
 
 function populateTheCards(data) {
-     // Get today's date
+    // Get today's date
     let date = new Date();
     date.setDate(date.getDate());
 

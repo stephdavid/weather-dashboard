@@ -90,6 +90,9 @@ The app should:
 
 * After a lot of moving  code around I managed to get a partial solution. Two outstanding issues: how to exend the event propagation of the buttons to the history buttons  and how to have more than one item in LocslStorage
 
+* Two outstanding issues - the history buttons are not clickable as the other buttons - I am toying with the idea of using the buttons list on the left for the history buttons, the user's current search once complete replaces one of these buttons (an array of buttons and use of pop). Working on the buttons has revealed an issue with the API calls - there are three API calls on each search - the first to the Geocoding API and the next two to  the One Call 3.0 API (should only be one to this API). It seems it's something to do with the promise thing of APIs. Something to look into with the tutor later today.
+
+
 ---
 
 ### References
