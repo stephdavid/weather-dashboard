@@ -29,7 +29,6 @@ https://stephdavid.github.io/weather-dashboard/
 **Search Using Search Box**
   - note the addition of the subject city of the last search in the list of buttons on the right
 
-![search using the search input box ](screenshots/search for using search input box.png)
 ![search using the search input box ](screenshots/search%20for%20using%20search%20input%20box.png)
 
 ---
