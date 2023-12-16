@@ -92,6 +92,7 @@ The app should:
 
 * Two outstanding issues - the history buttons are not clickable as the other buttons - I am toying with the idea of using the buttons list on the left for the history buttons, the user's current search once complete replaces one of these buttons (an array of buttons and use of pop). Working on the buttons has revealed an issue with the API calls - there are three API calls on each search - the first to the Geocoding API and the next two to  the One Call 3.0 API (should only be one to this API). It seems it's something to do with the promise thing of APIs. Something to look into with the tutor later today.
 
+* Very useful session today with the tutor Alexis. The api was being called twice because my two event listeners were called under a common class. The city buttons needed to have an additional unique class (.history) as they shared the class .btn with the search button. Alexis also noted that I was not using jQuery for the history button listener, so, with his assistance, I converted it and removed extraneous code.
 
 ---
 

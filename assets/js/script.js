@@ -11,12 +11,12 @@ function populateHistory() {
     // Check if getHistory is an array before iterating
     if (Array.isArray(getHistory) && getHistory.length > 0) {
         const cityButtons = ["button1", "button2", "button3", "button4", "button5", "button6"];
-        
+
         // Loop through the buttons and update their text content
         for (let i = 0; i < getHistory.length && i < cityButtons.length; i++) {
             const buttonId = cityButtons[i];
             const newValue = getHistory[i];
-            
+
             // Update the button text content
             document.getElementById(buttonId).textContent = newValue;
         }
@@ -201,19 +201,13 @@ $("#search-button").on("click", function (event) {
     }
 });
 
-const div = document.querySelector('.input-group-append')
+//const div = document.querySelector('.btn')
+const div = $(".history")
 
-div.addEventListener("click", (event) => {
-    if (event.target.tagName === 'BUTTON') {
-        if (event.target.classList.contains('search-button')) {
-            selectedCity = $("#search-input").val().trim();
-        } else {
-            // Clicked on other buttons inside the div
-            selectedCity = event.target.innerText;
-        }
-        console.log(selectedCity);
-        getLatAndLon(selectedCity);
-    }
+div.on("click", (event) => {
+    selectedCity = $(this).text().trim();
+    console.log(selectedCity);
+    getLatAndLon(selectedCity);
 });
 
 let queryAPI = "https://api.openweathermap.org/data/3.0/onecall?lat=51.5073219&lon=-0.1276474&appid=" + APIKey; //London
