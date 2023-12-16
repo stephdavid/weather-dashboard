@@ -11,19 +11,19 @@ function populateHistory() {
     // Check if getHistory is an array before iterating
     if (Array.isArray(getHistory) && getHistory.length > 0) {
         const cityButtons = ["button1", "button2", "button3", "button4", "button5", "button6"];
-
+        
         // Loop through the buttons and update their text content
         for (let i = 0; i < getHistory.length && i < cityButtons.length; i++) {
             const buttonId = cityButtons[i];
             const newValue = getHistory[i];
-
+            
             // Update the button text content
             document.getElementById(buttonId).textContent = newValue;
         }
     }
 }
 
-function populateTheCards(data) {
+function populateTheCards(data, selectedCity) {
     // Get today's date
     let date = new Date();
     date.setDate(date.getDate());
@@ -178,7 +178,7 @@ function getLatAndLon(selectedCity) {
                 // Store the updated array back in local storage
                 localStorage.setItem("selectedCity", JSON.stringify(existingHistory));
 
-                getCurrentAndForcastedWeather(latitude, longitude);
+                getCurrentAndForcastedWeather(latitude, longitude, selectedCity);
             } else {
                 alert("City not found. Please enter a valid city name.");
             }
@@ -188,6 +188,14 @@ function getLatAndLon(selectedCity) {
             alert("Something went wrong getting the data. Please try again.");
         });
 }
+
+// Add a click event handler to clear localstorage
+$("#clearAllButton").on("click", function (event) {
+    event.preventDefault;
+    localStorage.clear();
+    location.reload(true);
+});
+
 $("#search-button").on("click", function (event) {
     event.preventDefault();
     // This line grabs the input from the textbox
@@ -204,8 +212,8 @@ $("#search-button").on("click", function (event) {
 //const div = document.querySelector('.btn')
 const div = $(".history")
 
-div.on("click", (event) => {
-    selectedCity = $(this).text().trim();
+div.on("click", function (event) {
+    var selectedCity = $(this).text().trim();
     console.log(selectedCity);
     getLatAndLon(selectedCity);
 });
