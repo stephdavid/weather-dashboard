@@ -149,7 +149,7 @@ function getCurrentAndForcastedWeather(latitude, longitude, selectedCity) {
 
 function getLatAndLon(selectedCity) {
     city = selectedCity;
-    let geoURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + APIKey;
+    let geoURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + APIKey;
 
     fetch(geoURL)
         .then(function (response) {
